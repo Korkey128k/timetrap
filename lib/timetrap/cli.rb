@@ -246,7 +246,7 @@ COMMAND is one of:
         entry.update :sheet => args['-m']
       end
 
-      if Config['note_editor']
+      if Config['note_editor'] && unused_args !~ /.+/
         if args['-z']
           note = [entry.note, get_note_from_external_editor].join(Config['append_notes_delimiter'])
           entry.update :note => note

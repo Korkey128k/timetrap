@@ -326,6 +326,12 @@ describe Timetrap do
               invoke "edit --append"
               Timetrap::Timer.active_entry.note.should == 'running entry//appended in editor'
             end
+
+            it "should not open an editor if notes are specified" do |example|
+              invoke "edit -z appended in editor with notes"
+              expect(Timetrap::CLI).not_to receive(:system)
+              Timetrap::Timer.active_entry.note.should == 'running entry//appended in editor with notes'
+            end
           end
         end
       end
